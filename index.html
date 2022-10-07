@@ -1,46 +1,30 @@
 <html>
-	<head>
-		<link href="css/estiloak.css" rel="stylesheet">
-		<script src="js/main.js" type="module"> </script>
-	</head>
-	<body>
 
-	<div class="flex-container">
+<head>
+    <link href="styles.css" rel="stylesheet">
+    <script src="main.js" type = "module"></script>
+</head>
 
-	  <div class="flex left">
-	    	<img src='' id='irudia'>
-	  </div>
+<body>
 
-	  <div class="flex right">
-	    <form id='formulario'>
-			<div class="sarrerak">
-				<div class="input">
-					<label>Izenburua: </label>
-					<input type='text' id='izenburua' size="80">
-				</div>
-				<div class="input">
-					<label>Egilea(k): </label>
-					<input type='text' id='egilea' size="80">
-				</div>
-				<div class="input">
-					<label>Data: </label>
-					<input type='text' id='data'>
-				</div>
-				<div class="input">
-					<label>ISBN: </label>
-					<input type='text' id='isbn'>
-				</div>
-			</div>
-			<div class="botoiak">
-				<input type='button' value='<<' id='atzera'>
-				<input type='button' value='>>' id='aurrera'>
-				<input type='button' value='Bilatu' id='bilatu'>
-			</div>
-	    </form>
-	  </div>
+    <div class="flex-container">
 
-	</div>
+        <div class="flex left">
+            <img src="https://covers.openlibrary.org/b/id/8508261-M.jpg" style="display:block;margin-left:auto;margin-right:auto;" id ="imagen" alt="image1">
+        </div>
 
-    </body>
+        <div class="flex right">
+           <p> Titulo <input type="text" id="titulo"> </p> <br>
+           <p> Autor <input type="text" id="autor"> </p> <br>
+           <p> ISBN <input type="text" id="ISBN"> </p> <br>
+           <p> Fecha <input type="text" id="Fecha"> </p> <br>
+            <input type="button" id="btnPrev" value="<<">
+            <input type="button" id="btnSig" value=">>">
+            <input type="button" id="btnSearch" value="Buscar">
+        </div>
+
+    </div>
+
+</body>
+
 </html>
-
