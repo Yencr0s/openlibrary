@@ -62,25 +62,35 @@ function cargarScripts() {
 
     document.getElementById("btnSearch").onclick = async function () {
         let isbn = document.getElementById("ISBN").value;
-        let resultado = await fetch(
-            "https://openlibrary.org/api/books?bibkeys=ISBN:" +
-                isbn +
-                "&jscmd=data&format=json"
-        ).then(r => {
-            return r.json();
-        });
-        //access data from r.json
-        console.log(resultado)
-        console.log(resultado["ISBN:" + isbn].title)
-        console.log(resultado["ISBN:" + isbn].authors[0].name)
-        console.log(resultado["ISBN:" + isbn].publish_date)
-        console.log(resultado["ISBN:" + isbn].cover["medium"])
+        let books = data.filter((book) => book.isbn == isbn);
+        if (books.length > 0) {
+            dataIndex = data.indexOf(books[0]);
+        } else {
+            let resultado = await fetch(
+                "https://openlibrary.org/api/books?bibkeys=ISBN:" +
+                    isbn +
+                    "&jscmd=data&format=json"
+            ).then(r => {
+                return r.json();
+            });
+            data.push({isbn: isbn, egilea: resultado["ISBN:" + isbn].authors[0].name, data: resultado["ISBN:" + isbn].publish_date, izenburua: resultado["ISBN:" + isbn].title, filename: resultado["ISBN:" + isbn].cover["medium"].replace("https://covers.openlibrary.org/b/id/", "")});
+            dataIndex = data.length - 1;
 
-        document.getElementById("titulo").value = resultado["ISBN:" + isbn].title;
-        document.getElementById("autor").value = resultado["ISBN:" + isbn].authors[0].name;
-        document.getElementById("ISBN").value = isbn;
-        document.getElementById("Fecha").value = resultado["ISBN:" + isbn].publish_date;
-        document.getElementById("imagen").src = resultado["ISBN:" + isbn].cover["medium"];
+            console.log(resultado)
+            console.log(resultado["ISBN:" + isbn].title)
+            console.log(resultado["ISBN:" + isbn].authors[0].name)
+            console.log(resultado["ISBN:" + isbn].publish_date)
+            console.log(resultado["ISBN:" + isbn].cover["medium"])
+        }
+        showData();
+        // //access data from r.json
+        
+
+        // document.getElementById("titulo").value = resultado["ISBN:" + isbn].title;
+        // document.getElementById("autor").value = resultado["ISBN:" + isbn].authors[0].name;
+        // document.getElementById("ISBN").value = isbn;
+        // document.getElementById("Fecha").value = resultado["ISBN:" + isbn].publish_date;
+        // document.getElementById("imagen").src = resultado["ISBN:" + isbn].cover["medium"];
 
     };
 }
